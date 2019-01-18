@@ -8,8 +8,6 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.meelock.test.CreateBricks;
 
 public class GameWorld extends Stage {
-    private static final int VIEWPORT_WIDTH = 20;
-    private static final int VIEWPORT_HEIGHT = 13;
 
     public static World world;
     private Body ground;
@@ -28,7 +26,7 @@ public class GameWorld extends Stage {
     }
 
     private void setupCamera() {
-        camera = new OrthographicCamera(VIEWPORT_WIDTH, VIEWPORT_HEIGHT);
+        camera = new OrthographicCamera(Constants.APPLICATION_WIDTH, Constants.APPLICATION_HEIGHT);
         camera.position.set(camera.viewportWidth / 2, camera.viewportHeight / 2, 0f);
         camera.update();
     }
