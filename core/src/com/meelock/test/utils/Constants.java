@@ -1,13 +1,6 @@
-package com.meelock.test;
+package com.meelock.test.utils;
 
-import com.badlogic.gdx.ApplicationAdapter;
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
-
-public class MeeTestGame extends ApplicationAdapter {
-
-    public static ShapeRenderer shapeRenderer;
+public class Constants {
 
     /**
      * Width and height of application window in pixels
@@ -21,6 +14,17 @@ public class MeeTestGame extends ApplicationAdapter {
      */
     private static final int WIDTH = APPLICATION_WIDTH;
     private static final int HEIGHT = APPLICATION_HEIGHT;
+
+    /**
+     * Dimensions of the paddle
+     */
+    private static final int PADDLE_WIDTH = 60;
+    private static final int PADDLE_HEIGHT = 10;
+
+    /**
+     * Offset of the paddle up from the bottom
+     */
+    private static final int PADDLE_Y_OFFSET = 30;
 
     /**
      * Number of bricks per row
@@ -49,6 +53,11 @@ public class MeeTestGame extends ApplicationAdapter {
     private static final int BRICK_HEIGHT = 8;
 
     /**
+     * Radius of the ball in pixels
+     */
+    private static final int BALL_RADIUS = 10;
+
+    /**
      * Offset of the top brick row from the top
      */
     private static final int BRICK_Y_OFFSET = 70;
@@ -57,46 +66,4 @@ public class MeeTestGame extends ApplicationAdapter {
      * Number of turns
      */
     private static final int NTURNS = 3;
-
-    /**
-     * Score of the game.
-     */
-    private int gameScore = 0;
-
-    /**
-     * Turn of game.
-     */
-    private int turn = 0;
-
-    /**
-     * Sets the speed of the game.
-     */
-    private int gameSpeed = 5;
-
-    /* Method: run() */
-
-    /**
-     * Runs the Breakout program.
-     */
-
-    @Override
-    public void create() {
-        shapeRenderer = new ShapeRenderer();
-        CreateBricks.createBricks();
-
-    }
-
-    @Override
-    public void render() {
-        Gdx.gl.glClearColor(0, 0, 1, 1);
-        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-        Ball.moveBall();
-        Paddle.movePaddle();
-        Collisions.collide();
-    }
-
-    @Override
-    public void dispose() {
-        shapeRenderer.dispose();
-    }
 }
