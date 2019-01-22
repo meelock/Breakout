@@ -1,6 +1,7 @@
 package com.meelock.test;
 
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
@@ -10,14 +11,18 @@ import com.meelock.test.utils.GameWorld;
 
 public class CreateBricks {
 
+
     private static final float x = 0f;
     private static final float y = 0f;
 
     public static void createBricks () {
         for (int row = 0; row < Constants.NBRICK_ROWS; row++) {
             for (int xBrick = 1; xBrick < Constants.NBRICKS_PER_ROW; xBrick++) {
-                createBrick((xBrick - 1) * (Constants.BRICK_WIDTH + Constants.BRICK_SEP) + Constants.BRICK_SEP + Constants.BRICK_WIDTH / 2,
+                createBrick((xBrick - 5) * (Constants.BRICK_WIDTH + Constants.BRICK_SEP)
+//                                + Constants.BRICK_SEP + Constants.BRICK_WIDTH / 2
+                        ,
                         row * (Constants.BRICK_HEIGHT + Constants.BRICK_SEP) + Constants.BRICK_Y_OFFSET, row);
+//                System.out.println("got Here");
 
             }
         }
@@ -32,29 +37,33 @@ public class CreateBricks {
 
         Body body = GameWorld.world.createBody(bodyDef);
         body.createFixture(shape, 1f);
-//
-//        switch (row + 1) {
-//            case 1:
-//            case 2:
-//                BrickBreaker.shapeRenderer.setColor(Color.RED);
-//                break;
-//            case 3:
-//            case 4:
-//                BrickBreaker.shapeRenderer.setColor(Color.ORANGE);
-//                break;
-//            case 5:
-//            case 6:
-//                BrickBreaker.shapeRenderer.setColor(Color.YELLOW);
-//                break;
-//            case 7:
-//            case 8:
-//                BrickBreaker.shapeRenderer.setColor(Color.GREEN);
-//                break;
-//            case 9:
-//            case 10:
-//                BrickBreaker.shapeRenderer.setColor(Color.BLUE);
-//                break;
-//        }
+        GameWorld.shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
+        GameWorld.shapeRenderer.rect(x, y, Constants.BRICK_WIDTH, Constants.BRICK_HEIGHT);
+        switch (row + 1) {
+            case 1:
+            case 2:
+                GameWorld.shapeRenderer.setColor(Color.RED);
+                System.out.println("got here! RED");
+                break;
+            case 3:
+            case 4:
+                GameWorld.shapeRenderer.setColor(Color.ORANGE);
+                break;
+            case 5:
+            case 6:
+                GameWorld.shapeRenderer.setColor(Color.YELLOW);
+                break;
+            case 7:
+            case 8:
+                GameWorld.shapeRenderer.setColor(Color.GREEN);
+                break;
+            case 9:
+            case 10:
+                GameWorld.shapeRenderer.setColor(Color.BLUE);
+                break;
+        }
+        GameWorld.shapeRenderer.end();
+
     }
 
 

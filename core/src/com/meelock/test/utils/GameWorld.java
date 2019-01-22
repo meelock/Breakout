@@ -1,27 +1,29 @@
 package com.meelock.test.utils;
 
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.physics.box2d.Body;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.meelock.test.Ball;
 import com.meelock.test.CreateBricks;
 
 public class GameWorld extends Stage {
 
     public static World world;
-    private Body ground;
 
     private final float TIME_STEP = 1 / 300f;
     private float accumulator = 0f;
 
     private OrthographicCamera camera;
     private Box2DDebugRenderer renderer;
+    public static ShapeRenderer shapeRenderer;
 
     public GameWorld() {
         world = WorldUtils.createWorld();
         renderer = new Box2DDebugRenderer();
-        CreateBricks.createBricks();
+        shapeRenderer = new ShapeRenderer();
+        Ball.moveBall();
         setupCamera();
     }
 
@@ -42,6 +44,9 @@ public class GameWorld extends Stage {
             world.step(TIME_STEP, 6, 2);
             accumulator -= TIME_STEP;
         }
+
+        CreateBricks.createBricks();
+
 
         //TODO: Implement interpolation
 
