@@ -14,6 +14,7 @@ public class CreateBricks {
 
     private static final float x = 0f;
     private static final float y = 0f;
+    private static boolean bricksCreated = false;
 
     public static void createBricks () {
         for (int row = 0; row < Constants.NBRICK_ROWS; row++) {
@@ -22,28 +23,28 @@ public class CreateBricks {
 //                                + Constants.BRICK_SEP + Constants.BRICK_WIDTH / 2
                         ,
                         row * (Constants.BRICK_HEIGHT + Constants.BRICK_SEP) + Constants.BRICK_Y_OFFSET, row);
-//                System.out.println("got Here");
 
             }
         }
     }
     public static void createBrick (int x, int y, int row) {
+        if (!bricksCreated) {
 
-        BodyDef bodyDef = new BodyDef();
-        bodyDef.position.set(new Vector2(x + Constants.APPLICATION_WIDTH / 2, y + Constants.APPLICATION_HEIGHT / 2));
+            BodyDef bodyDef = new BodyDef();
+            bodyDef.position.set(new Vector2(x + Constants.APPLICATION_WIDTH / 2, y + Constants.APPLICATION_HEIGHT / 2));
 
-        PolygonShape shape = new PolygonShape();
-        shape.setAsBox(Constants.BRICK_WIDTH / 2, Constants.BRICK_HEIGHT / 2);
+            PolygonShape shape = new PolygonShape();
+            shape.setAsBox(Constants.BRICK_WIDTH / 2, Constants.BRICK_HEIGHT / 2);
 
-        Body body = GameWorld.world.createBody(bodyDef);
-        body.createFixture(shape, 1f);
+            Body body = GameWorld.world.createBody(bodyDef);
+            body.createFixture(shape, 1f);
+        }
         GameWorld.shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
-        GameWorld.shapeRenderer.rect(x, y, Constants.BRICK_WIDTH, Constants.BRICK_HEIGHT);
+        GameWorld.shapeRenderer.rect(x + Constants.APPLICATION_WIDTH / 2 - Constants.BRICK_WIDTH/2, y + Constants.APPLICATION_HEIGHT / 2 - Constants.BRICK_HEIGHT/2, Constants.BRICK_WIDTH, Constants.BRICK_HEIGHT);
         switch (row + 1) {
             case 1:
             case 2:
                 GameWorld.shapeRenderer.setColor(Color.RED);
-                System.out.println("got here! RED");
                 break;
             case 3:
             case 4:

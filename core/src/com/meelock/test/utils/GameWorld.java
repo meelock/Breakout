@@ -7,6 +7,7 @@ import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.meelock.test.Ball;
 import com.meelock.test.CreateBricks;
+import com.meelock.test.Paddle;
 
 public class GameWorld extends Stage {
 
@@ -46,6 +47,7 @@ public class GameWorld extends Stage {
         }
 
         CreateBricks.createBricks();
+        Paddle.movePaddle();
 
 
         //TODO: Implement interpolation
