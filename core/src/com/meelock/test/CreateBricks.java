@@ -28,7 +28,7 @@ public class CreateBricks {
         }
     }
     public static void createBrick (int x, int y, int row) {
-        if (!bricksCreated) {
+        if (!bricksCreated && row != Constants.NBRICK_ROWS) {
 
             BodyDef bodyDef = new BodyDef();
             bodyDef.position.set(new Vector2(x + Constants.APPLICATION_WIDTH / 2, y + Constants.APPLICATION_HEIGHT / 2));
@@ -38,6 +38,7 @@ public class CreateBricks {
 
             Body body = GameWorld.world.createBody(bodyDef);
             body.createFixture(shape, 1f);
+            if (row == Constants.NBRICK_ROWS)bricksCreated = true;
         }
         GameWorld.shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
         GameWorld.shapeRenderer.rect(x + Constants.APPLICATION_WIDTH / 2 - Constants.BRICK_WIDTH/2, y + Constants.APPLICATION_HEIGHT / 2 - Constants.BRICK_HEIGHT/2, Constants.BRICK_WIDTH, Constants.BRICK_HEIGHT);
